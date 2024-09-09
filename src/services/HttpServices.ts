@@ -1,3 +1,5 @@
+import { HttpMethod } from '@/enums/HttpMethod'
+
 import { UrlBuilder } from '@/utils/UrlBuilder'
 import { AppError } from '@/utils/error/AppError'
 import { defaultErrorMessage } from '@/utils/error/defaultErrorMessage'
