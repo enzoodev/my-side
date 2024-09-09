@@ -1,0 +1,3 @@
+type GetProductByIdResponse = {
+  product: TProduct
+}
