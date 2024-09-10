@@ -59,6 +59,15 @@ export const GlobalStyles = createGlobalStyle`
     outline: none;
   }
 
+  button, input:focus, button:focus {
+    outline: none;
+  }
+
+  button:active {
+    outline: none;
+  }
+
+
   :focus {
     outline: 2px solid ${({ theme }) => theme.colors.border};
     outline-offset: 2px;
