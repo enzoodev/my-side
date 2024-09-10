@@ -1,9 +1,22 @@
-import { Fragment } from 'react'
+import { Fragment, useCallback, useMemo } from 'react'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
+
+import { useCartProducts } from '@/store/cart'
 
 import { useGetCategories } from '@/hooks/products/useGetCategories'
 import { useGetProducts } from '@/hooks/products/useGetProducts'
+
+import { Routes } from '@/enums/Routes'
+
+import { Header } from '@/components/elements/Header'
+import { ProductItem } from '@/components/modules/ProductItem'
+import { ProductSkeletonItem } from '@/components/modules/ProductSkeletonItem'
+
+import { generateId } from '@/utils/generateId'
+
+import * as S from '@/styles/pages'
 
 const Home: NextPage = () => {
   const { categories, isFetchingCategories } = useGetCategories()
@@ -19,6 +32,46 @@ const Home: NextPage = () => {
     handleGoToPreviousPage,
     handleGoToNextPage,
   } = useGetProducts()
+  const { addProductToCart } = useCartProducts()
+  const router = useRouter()
+
+  const handleGoToProduct = useCallback(
+    (id: number) => {
+      router.push(Routes.PRODUCTS, {
+        query: { id },
+      })
+    },
+    [router],
+  )
+
+  const handleAddProductToCart = useCallback(
+    (item: TProduct) => {
+      addProductToCart(item)
+      router.push(Routes.CART)
+    },
+    [addProductToCart, router],
+  )
+
+  const productItems = useMemo(() => {
+    if (isFetchingProducts) {
+      return Array.from({ length: 30 }, () => (
+        <ProductSkeletonItem key={generateId()} />
+      ))
+    }
+
+    if (products.length === 0) {
+      return <p>Nenhum produto encontrado.</p>
+    }
+
+    return products.map((product) => (
+      <ProductItem
+        key={product.id}
+        item={product}
+        onGoToProduct={() => handleGoToProduct(product.id)}
+        onAddProductToCart={() => handleAddProductToCart(product)}
+      />
+    ))
+  }, [handleAddProductToCart, handleGoToProduct, isFetchingProducts, products])
 
   return (
     <Fragment>
@@ -26,14 +79,11 @@ const Home: NextPage = () => {
         <title>Produtos - MySide</title>
       </Head>
       <div>
-        <div>
-          <h1>Products</h1>
-          {JSON.stringify(products ?? {})}
-        </div>
-        <div>
-          <h1>Categories</h1>
-          {JSON.stringify(categories ?? {})}
-        </div>
+        <Header />
+        <S.Container>
+          <h1>Produtos</h1>
+          <S.ProductGrid>{productItems}</S.ProductGrid>
+        </S.Container>
       </div>
     </Fragment>
   )
