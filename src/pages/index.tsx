@@ -35,15 +35,6 @@ const Home: NextPage = () => {
   const { addProductToCart } = useCartProducts()
   const router = useRouter()
 
-  const handleGoToProduct = useCallback(
-    (id: number) => {
-      router.push(Routes.PRODUCTS, {
-        query: { id },
-      })
-    },
-    [router],
-  )
-
   const handleAddProductToCart = useCallback(
     (item: TProduct) => {
       addProductToCart(item)
@@ -67,11 +58,10 @@ const Home: NextPage = () => {
       <ProductItem
         key={product.id}
         item={product}
-        onGoToProduct={() => handleGoToProduct(product.id)}
         onAddProductToCart={() => handleAddProductToCart(product)}
       />
     ))
-  }, [handleAddProductToCart, handleGoToProduct, isFetchingProducts, products])
+  }, [handleAddProductToCart, isFetchingProducts, products])
 
   return (
     <Fragment>
