@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import Link from 'next/link'
+import LazyLoad from 'react-lazyload'
 
 import { Routes } from '@/enums/Routes'
 
@@ -15,14 +16,32 @@ type Props = {
 
 export const ProductItem: React.NamedExoticComponent<Props> = React.memo(
   function ProductItem({ item, onAddProductToCart }) {
+    const [isLoading, setIsLoading] = useState(true)
+
     const cutedTitle = cutText(item.title, 40)
     const cutedDescription = cutText(item.description, 80)
     const formattedPrice = formatPrice(item.price)
 
+    const handleImageLoad = useCallback(() => {
+      setIsLoading(false)
+    }, [])
+
     return (
       <S.ProductCard>
         <Link href={`${Routes.PRODUCTS}/${item.id}`}>
-          <S.ProductImage src={item.image} alt={cutedTitle} />
+          <LazyLoad
+            height={250}
+            offset={100}
+            placeholder={<S.ProductImageSkeleton />}
+          >
+            <S.ProductImage
+              src={item.image}
+              alt={cutedTitle}
+              fetchPriority="high"
+              onLoad={handleImageLoad}
+              style={{ display: isLoading ? 'none' : 'block' }}
+            />
+          </LazyLoad>
         </Link>
         <S.AddToCartButton onClick={onAddProductToCart}>
           <S.AddToCartIcon />

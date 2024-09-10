@@ -1,5 +1,5 @@
-import { IconShoppingCart } from '@tabler/icons-react'
 import styled, { css } from 'styled-components'
+import { IconShoppingCart } from '@tabler/icons-react'
 
 export const ProductCard = styled.div`
   position: relative;
@@ -20,6 +20,16 @@ export const ProductCard = styled.div`
   `};
 `
 
+export const ProductImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: auto;
+  ${({ theme }) => css`
+    border-top-left-radius: ${theme.borderRadius.md};
+    border-top-right-radius: ${theme.borderRadius.md};
+  `};
+`
+
 export const ProductImage = styled.img`
   width: 100%;
   height: auto;
@@ -27,6 +37,24 @@ export const ProductImage = styled.img`
     border-top-left-radius: ${theme.borderRadius.md};
     border-top-right-radius: ${theme.borderRadius.md};
   `};
+`
+
+export const ProductImageSkeleton = styled.div`
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+
+  @keyframes loading {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
 `
 
 export const ProductInfo = styled.div`
