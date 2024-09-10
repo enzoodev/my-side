@@ -7,8 +7,10 @@ export const lightTheme: DefaultTheme = {
     main: '#007BFF',
     secondary: '#6C757D',
     text: '#212529',
-    background: '#ECECEC',
-    card: '#D5D5D5',
+    textGray: '#70757B',
+    background: '#F1F1F1',
+    card: '#FFFFFF',
+    header: '#FDFDFD',
     border: '#DEE2E6',
   },
 }
