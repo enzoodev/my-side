@@ -10,6 +10,10 @@ export const ProductSkeletonCard = styled.div`
     width: 100%;
     position: relative;
     overflow: hidden;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   `};
 `
 

@@ -1,3 +1,4 @@
+import { IconShoppingCart } from '@tabler/icons-react'
 import styled, { css } from 'styled-components'
 
 export const ProductCard = styled.div`
@@ -7,10 +8,14 @@ export const ProductCard = styled.div`
     border: 1px solid ${theme.colors.border};
     border-radius: ${theme.borderRadius.md};
     background-color: ${theme.colors.card};
-    transition: transform 0.2s ease; /* Adiciona uma leve animação ao passar o mouse */
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 
     &:hover {
-      transform: scale(1.02); /* Efeito de "hover" */
+      transform: scale(1.02);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
     }
   `};
 `
@@ -74,20 +79,26 @@ export const ProductInfoTitle = styled.h5`
 `
 
 export const AddToCartButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 8px 12px;
+  border-radius: 50%;
   ${({ theme }) => css`
-    background-color: ${theme.colors.background};
-    color: ${theme.colors.header};
-    border: none;
-    border-radius: ${theme.borderRadius.sm};
-    cursor: pointer;
-    font-size: ${theme.fontSizes.xs};
+    right: ${theme.layout[2]};
+    top: ${theme.layout[2]};
+    height: ${theme.layout[9]};
+    width: ${theme.layout[9]};
+    background-color: ${theme.colors.button};
 
     &:hover {
-      background-color: ${theme.colors.secondary};
+      background-color: ${theme.colors.buttonHover};
     }
   `};
 `
+
+export const AddToCartIcon = styled(IconShoppingCart).attrs(({ theme }) => ({
+  size: 18,
+  stroke: 1.5,
+  color: theme.colors.text,
+}))``
