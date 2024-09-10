@@ -12,5 +12,7 @@ export const lightTheme: DefaultTheme = {
     card: '#FFFFFF',
     header: '#FDFDFD',
     border: '#DEE2E6',
+    button: '#E1E1E1',
+    buttonHover: '#CCCCCC',
   },
 }

@@ -51,6 +51,8 @@ declare module 'styled-components' {
       card: string
       header: string
       border: string
+      button: string
+      buttonHover: string
     }
   }
 }
