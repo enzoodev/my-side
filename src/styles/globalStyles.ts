@@ -59,18 +59,18 @@ export const GlobalStyles = createGlobalStyle`
     outline: none;
   }
 
-  button, input:focus, button:focus {
+  button, img, input:focus, button:focus, button:active, img:focus, img:active, a, a:focus, a:active {
     outline: none;
   }
-
-  button:active {
-    outline: none;
-  }
-
 
   :focus {
     outline: 2px solid ${({ theme }) => theme.colors.border};
     outline-offset: 2px;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 
   a, button {
