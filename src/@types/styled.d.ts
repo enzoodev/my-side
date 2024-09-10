@@ -46,9 +46,13 @@ declare module 'styled-components' {
       main: string
       secondary: string
       text: string
+      textGray: string
       background: string
       card: string
+      header: string
       border: string
+      button: string
+      buttonHover: string
     }
   }
 }
