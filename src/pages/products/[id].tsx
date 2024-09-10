@@ -1,14 +1,24 @@
-import { NextPage } from 'next'
+import { Fragment } from 'react'
 import { useRouter } from 'next/router'
+import { NextPage } from 'next'
+import Head from 'next/head'
+
+import { Header } from '@/components/elements/Header'
 
 const Product: NextPage = () => {
   const router = useRouter()
   const { id } = router.query
 
   return (
-    <div>
-      <h1>Product {id}</h1>
-    </div>
+    <Fragment>
+      <Head>
+        <title>Produtos - MySide</title>
+      </Head>
+      <div>
+        <Header />
+        Produto {id}
+      </div>
+    </Fragment>
   )
 }
 
