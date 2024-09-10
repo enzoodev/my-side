@@ -1,7 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-  data: new Map<number, CartProduct>(),
+type CartState = {
+  data: Record<string, CartProduct>
+}
+
+const initialState: CartState = {
+  data: {},
 }
 
 export const cartSlice = createSlice({
@@ -11,41 +15,38 @@ export const cartSlice = createSlice({
     addProductToCart: (state, action: PayloadAction<TProduct>) => {
       const productId = action.payload.id
 
-      if (state.data.has(productId)) {
-        const existingProduct = state.data.get(productId)!
-        existingProduct.quantity += 1
-        return
+      if (state.data[productId]) {
+        state.data[productId].quantity += 1
+      } else {
+        state.data[productId] = {
+          quantity: 1,
+          product: action.payload,
+        }
       }
-
-      state.data.set(productId, {
-        quantity: 1,
-        product: action.payload,
-      })
     },
     increaseProductQuantity: (state, action: PayloadAction<number>) => {
       const productId = action.payload
 
-      if (state.data.has(productId)) {
-        const existingProduct = state.data.get(productId)!
-        existingProduct.quantity += 1
+      if (state.data[productId]) {
+        state.data[productId].quantity += 1
       }
     },
     decreaseProductQuantity: (state, action: PayloadAction<number>) => {
       const productId = action.payload
 
-      if (state.data.has(productId)) {
-        const existingProduct = state.data.get(productId)!
+      if (state.data[productId]) {
+        const product = state.data[productId]
 
-        if (existingProduct.quantity > 1) {
-          existingProduct.quantity -= 1
+        if (product.quantity > 1) {
+          product.quantity -= 1
         } else {
-          state.data.delete(productId)
+          delete state.data[productId]
         }
       }
     },
     removeProductFromCart: (state, action: PayloadAction<number>) => {
       const productId = action.payload
-      state.data.delete(productId)
+      delete state.data[productId]
     },
   },
 })

@@ -7,7 +7,7 @@ import { cartActions } from './reducer'
 
 export const useCartProducts = () => {
   const storeCartData = useAppSelector((state) => state.cart.data)
-  const cart = storeCartData.size ? Array.from(storeCartData.values()) : []
+  const cart = Object.values(storeCartData)
 
   const dispatch = useAppDispatch()
 
