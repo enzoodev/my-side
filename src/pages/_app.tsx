@@ -1,12 +1,14 @@
-import { Fragment } from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { Slide, ToastContainer } from 'react-toastify'
+import { ThemeProvider } from 'styled-components'
 
 import { queryClient } from '@/services/queryClient'
+
+import { lightTheme } from '@/styles/theme/light'
 
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -14,7 +16,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 const App: NextPage<AppProps> = ({ Component, pageProps }) => {
   return (
-    <Fragment>
+    <ThemeProvider theme={lightTheme}>
       <ToastContainer
         position="bottom-left"
         autoClose={4000}
@@ -36,7 +38,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }) => {
           <Component {...pageProps} />
         </div>
       </QueryClientProvider>
-    </Fragment>
+    </ThemeProvider>
   )
 }
 
