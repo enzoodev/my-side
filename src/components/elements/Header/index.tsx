@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
           style={{ borderRadius: '50%' }}
         />
       </Link>
-      <Link href="https://myside.com.br" target="_blank">
+      <Link href={Routes.INDEX}>
         <Image src="/img/myside-logo.svg" alt="Logo" height={36} width={150} />
       </Link>
       <Link href={Routes.CART}>
