@@ -13,6 +13,7 @@ import { Routes } from '@/enums/Routes'
 import { Input } from '@/components/elements/Input'
 import { Header } from '@/components/elements/Header'
 import { Dropdown } from '@/components/elements/Dropdown'
+import { Pagination } from '@/components/elements/Pagination'
 import { ProductItem } from '@/components/modules/ProductItem'
 import { ProductSkeletonItem } from '@/components/modules/ProductSkeletonItem'
 
@@ -104,6 +105,13 @@ const Home: NextPage = () => {
             </S.FilterWrapper>
           </S.TitleWrapper>
           <S.ProductGrid>{productItems}</S.ProductGrid>
+          <Pagination
+            totalPages={3} // get this value from the API
+            currentPage={page}
+            onSetPage={handleSetPage}
+            onGoToPreviousPage={handleGoToPreviousPage}
+            onGoToNextPage={handleGoToNextPage}
+          />
         </S.Content>
       </S.Container>
     </Fragment>
