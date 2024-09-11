@@ -23,6 +23,14 @@ export const TitleWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    align-items: flex-start;
+    ${({ theme }) => css`
+      gap: ${theme.layout[4]};
+    `};
+  }
 `
 
 export const Title = styled.h1`
@@ -39,6 +47,11 @@ export const FilterWrapper = styled.div`
   ${({ theme }) => css`
     gap: ${theme.layout[4]};
   `};
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `
 
 export const ProductGrid = styled.div`
