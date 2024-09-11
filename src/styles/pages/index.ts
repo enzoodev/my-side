@@ -3,11 +3,55 @@ import styled, { css } from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  ${({ theme }) => css`
+    background-color: ${theme.colors.background};
+  `};
+`
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
   ${({ theme }) => css`
     gap: ${theme.layout[4]};
     padding: ${theme.layout[4]};
-    background-color: ${theme.colors.background};
   `};
+`
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    align-items: flex-start;
+    ${({ theme }) => css`
+      gap: ${theme.layout[4]};
+    `};
+  }
+`
+
+export const Title = styled.h1`
+  ${({ theme }) => css`
+    color: ${theme.colors.text};
+    font-size: ${theme.fontSizes['2xl']};
+  `};
+`
+
+export const FilterWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  ${({ theme }) => css`
+    gap: ${theme.layout[4]};
+  `};
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `
 
 export const ProductGrid = styled.div`
