@@ -37,7 +37,7 @@ export const useGetProducts = () => {
     [products, searchText],
   )
 
-  const handleSetCategory = useCallback((newCategory: string) => {
+  const handleSetCategory = useCallback((newCategory: string | undefined) => {
     setCategory(newCategory)
     setPage(1)
   }, [])
