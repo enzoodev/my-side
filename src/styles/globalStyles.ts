@@ -81,4 +81,26 @@ export const GlobalStyles = createGlobalStyle`
     line-height: 1.2;
     font-weight: 600;
   }
+
+  ::-webkit-scrollbar {
+    width: 14px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.scrollbarTrack};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.colors.scrollbarThumb};
+    border-radius: 6px;
+    border: 3px solid ${({ theme }) => theme.colors.scrollbarTrack};
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: ${({ theme }) => theme.colors.scrollbarThumbHover};
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background-color: ${({ theme }) => theme.colors.scrollbarThumbActive};
+  }
 `
