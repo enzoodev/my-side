@@ -7,6 +7,7 @@ interface BaseTheme {
     md: string
     lg: string
     xl: string
+    '2xl': string
   }
   layout: {
     1: string
@@ -53,6 +54,15 @@ declare module 'styled-components' {
       border: string
       button: string
       buttonHover: string
+      inputBackground: string
+      inputBorder: string
+      inputText: string
+      inputPlaceholder: string
+      inputFocus: string
+      scrollbarTrack: string
+      scrollbarThumb: string
+      scrollbarThumbHover: string
+      scrollbarThumbActive: string
     }
   }
 }
