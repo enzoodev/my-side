@@ -3,10 +3,41 @@ import styled, { css } from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  ${({ theme }) => css`
+    background-color: ${theme.colors.background};
+  `};
+`
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
   ${({ theme }) => css`
     gap: ${theme.layout[4]};
     padding: ${theme.layout[4]};
-    background-color: ${theme.colors.background};
+  `};
+`
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const Title = styled.h1`
+  ${({ theme }) => css`
+    color: ${theme.colors.text};
+    font-size: ${theme.fontSizes['2xl']};
+  `};
+`
+
+export const FilterWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  ${({ theme }) => css`
+    gap: ${theme.layout[4]};
   `};
 `
 
