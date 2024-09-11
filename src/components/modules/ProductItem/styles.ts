@@ -45,7 +45,10 @@ export const ProductImageSkeleton = styled.div`
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
+  ${({ theme }) => css`
+    border-top-left-radius: ${theme.borderRadius.md};
+    border-top-right-radius: ${theme.borderRadius.md};
+  `};
 
   @keyframes loading {
     0% {

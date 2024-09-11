@@ -10,6 +10,7 @@ import { useGetProducts } from '@/hooks/products/useGetProducts'
 
 import { Routes } from '@/enums/Routes'
 
+import { Input } from '@/components/elements/Input'
 import { Header } from '@/components/elements/Header'
 import { ProductItem } from '@/components/modules/ProductItem'
 import { ProductSkeletonItem } from '@/components/modules/ProductSkeletonItem'
@@ -68,13 +69,23 @@ const Home: NextPage = () => {
       <Head>
         <title>Produtos - MySide</title>
       </Head>
-      <div>
+      <S.Container>
         <Header />
-        <S.Container>
-          <h1>Produtos</h1>
+        <S.Content>
+          <S.TitleWrapper>
+            <S.Title>Produtos</S.Title>
+            <S.FilterWrapper>
+              <Input
+                placeholder="Qual produto você procura?"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                style={{ width: '20rem', maxWidth: '100%' }}
+              />
+            </S.FilterWrapper>
+          </S.TitleWrapper>
           <S.ProductGrid>{productItems}</S.ProductGrid>
-        </S.Container>
-      </div>
+        </S.Content>
+      </S.Container>
     </Fragment>
   )
 }
