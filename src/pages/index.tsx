@@ -79,7 +79,7 @@ const Home: NextPage = () => {
                 placeholder="Qual produto você procura?"
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
-                style={{ width: '20rem', maxWidth: '100%' }}
+                style={{ width: '20rem' }}
               />
             </S.FilterWrapper>
           </S.TitleWrapper>
