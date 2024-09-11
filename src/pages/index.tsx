@@ -12,10 +12,12 @@ import { Routes } from '@/enums/Routes'
 
 import { Input } from '@/components/elements/Input'
 import { Header } from '@/components/elements/Header'
+import { Dropdown } from '@/components/elements/Dropdown'
 import { ProductItem } from '@/components/modules/ProductItem'
 import { ProductSkeletonItem } from '@/components/modules/ProductSkeletonItem'
 
 import { generateId } from '@/utils/generateId'
+import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 
 import * as S from '@/styles/pages'
 
@@ -35,6 +37,17 @@ const Home: NextPage = () => {
   } = useGetProducts()
   const { addProductToCart } = useCartProducts()
   const router = useRouter()
+
+  const formattedCategories = useMemo(() => {
+    if (isFetchingCategories || !categories || categories.length === 0) {
+      return []
+    }
+
+    return categories.map((category) => ({
+      label: capitalizeFirstLetter(category),
+      value: category,
+    }))
+  }, [categories, isFetchingCategories])
 
   const handleAddProductToCart = useCallback(
     (item: TProduct) => {
@@ -75,6 +88,13 @@ const Home: NextPage = () => {
           <S.TitleWrapper>
             <S.Title>Produtos</S.Title>
             <S.FilterWrapper>
+              <Dropdown
+                placeholder="Selecionar categoria"
+                options={formattedCategories}
+                selectedOption={category}
+                onSelectValue={handleSetCategory}
+                style={{ width: '15rem' }}
+              />
               <Input
                 placeholder="Qual produto você procura?"
                 value={searchText}
