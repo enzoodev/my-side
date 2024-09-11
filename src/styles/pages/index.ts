@@ -24,7 +24,7 @@ export const TitleWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: 540px) {
+  @media (max-width: 900px) {
     flex-direction: column;
     align-items: flex-start;
     ${({ theme }) => css`
@@ -48,7 +48,7 @@ export const FilterWrapper = styled.div`
     gap: ${theme.layout[4]};
   `};
 
-  @media (max-width: 540px) {
+  @media (max-width: 680px) {
     flex-direction: column;
     align-items: flex-start;
   }
