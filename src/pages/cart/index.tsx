@@ -23,39 +23,33 @@ const Cart: NextPage = () => {
     toggleSelectProduct,
   } = useCartProducts()
 
-  const total = useMemo(
-    () => ({
-      amount: cart.reduce((acc, item) => {
+  const total = useMemo(() => {
+    const calculatedValues = cart.reduce(
+      (acc, item) => {
         if (item.isSelected) {
-          return (
-            acc +
-            item.product.price *
-              item.quantity *
-              (1 - (item.product.discount ?? 0) / 100)
-          )
-        }
-        return acc
-      }, 0),
-      discount: cart.reduce((acc, item) => {
-        if (item.isSelected) {
-          return (
-            acc +
-            item.product.price *
-              item.quantity *
-              ((item.product.discount ?? 0) / 100)
-          )
-        }
-        return acc
-      }, 0),
-    }),
-    [cart],
-  )
+          const originalPrice =
+            item.product.price / (1 - (item.product.discount ?? 0) / 100)
+          const itemDiscount =
+            (originalPrice - item.product.price) * item.quantity
+          const itemSubtotal = originalPrice * item.quantity
 
-  const formattedTotal = {
-    amount: formatPrice(total.amount),
-    discount: formatPrice(total.discount),
-    subtotal: formatPrice(total.amount - total.discount),
-  }
+          return {
+            amount: acc.amount + item.product.price * item.quantity,
+            discount: acc.discount + itemDiscount,
+            subtotal: acc.subtotal + itemSubtotal,
+          }
+        }
+        return acc
+      },
+      { amount: 0, discount: 0, subtotal: 0 },
+    )
+
+    return {
+      amount: formatPrice(calculatedValues.amount),
+      discount: formatPrice(calculatedValues.discount),
+      subtotal: formatPrice(calculatedValues.subtotal),
+    }
+  }, [cart])
 
   const handleCheckout = useCallback(() => {
     toast.success('Compra realizada com sucesso!')
@@ -89,17 +83,17 @@ const Cart: NextPage = () => {
           <S.PaymentHeader>
             <S.PaymentInfo>
               <S.PaymentInfoSubtitle>Subtotal:</S.PaymentInfoSubtitle>
-              <S.PaymentInfoTitle>{formattedTotal.subtotal}</S.PaymentInfoTitle>
+              <S.PaymentInfoTitle>{total.subtotal}</S.PaymentInfoTitle>
             </S.PaymentInfo>
             <S.PaymentInfo>
               <S.PaymentInfoSubtitle>Desconto:</S.PaymentInfoSubtitle>
-              <S.PaymentInfoTitle>{formattedTotal.discount}</S.PaymentInfoTitle>
+              <S.PaymentInfoTitle>{total.discount}</S.PaymentInfoTitle>
             </S.PaymentInfo>
           </S.PaymentHeader>
           <S.PaymentConclusion>
             <S.PaymentInfo>
               <S.PaymentTotalSubtitle>Total:</S.PaymentTotalSubtitle>
-              <S.PaymentTotalTitle>{formattedTotal.amount}</S.PaymentTotalTitle>
+              <S.PaymentTotalTitle>{total.amount}</S.PaymentTotalTitle>
             </S.PaymentInfo>
             <S.PaymentButton onClick={handleCheckout}>
               Finalizar compra
@@ -111,13 +105,13 @@ const Cart: NextPage = () => {
   }, [
     cart,
     decreaseProductQuantity,
-    formattedTotal.amount,
-    formattedTotal.discount,
-    formattedTotal.subtotal,
     handleCheckout,
     increaseProductQuantity,
     removeProductFromCart,
     toggleSelectProduct,
+    total.amount,
+    total.discount,
+    total.subtotal,
   ])
 
   return (
