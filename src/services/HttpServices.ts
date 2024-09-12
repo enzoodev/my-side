@@ -1,3 +1,5 @@
+import { TRequestConfig } from '@/domain/entities/RequestConfig'
+
 import { HttpMethod } from '@/enums/HttpMethod'
 
 import { UrlBuilder } from '@/utils/UrlBuilder'
