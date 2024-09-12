@@ -37,7 +37,6 @@ export const ProductItem: React.NamedExoticComponent<Props> = React.memo(
             <S.ProductImage
               src={item.image}
               alt={cutedTitle}
-              fetchPriority="high"
               onLoad={handleImageLoad}
               style={{ display: isLoading ? 'none' : 'block' }}
             />
