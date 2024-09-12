@@ -42,7 +42,10 @@ export const ProductItem: React.NamedExoticComponent<Props> = React.memo(
             />
           </LazyLoad>
         </Link>
-        <S.AddToCartButton onClick={onAddProductToCart}>
+        <S.AddToCartButton
+          onClick={onAddProductToCart}
+          aria-label="Adicionar ao carrinho"
+        >
           <S.AddToCartIcon />
         </S.AddToCartButton>
         <Link href={`${Routes.PRODUCTS}/${item.id}`}>

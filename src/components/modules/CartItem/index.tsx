@@ -44,11 +44,17 @@ export const CartItem: React.NamedExoticComponent<CartItemProps> = memo(
         <S.RightSection>
           <S.ActionsSection>
             <S.QuantitySection>
-              <S.QuantityButton onClick={() => onDecreaseQuantity(product.id)}>
+              <S.QuantityButton
+                onClick={() => onDecreaseQuantity(product.id)}
+                data-testid="decrease-button"
+              >
                 <IconMinus size={20} />
               </S.QuantityButton>
               <S.QuantityText>{quantity}</S.QuantityText>
-              <S.QuantityButton onClick={() => onIncreaseQuantity(product.id)}>
+              <S.QuantityButton
+                onClick={() => onIncreaseQuantity(product.id)}
+                data-testid="increase-button"
+              >
                 <IconPlus size={20} />
               </S.QuantityButton>
             </S.QuantitySection>
