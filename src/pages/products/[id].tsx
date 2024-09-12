@@ -24,7 +24,7 @@ const Product: NextPage = () => {
   const { addProductToCart } = useCartProducts()
   const formattedPrice = product ? formatPrice(product.price) : ''
   const formattedPreviousPrice = product
-    ? formatPrice(product.price / (1 - product.discount / 100))
+    ? formatPrice(product.price / (1 - (product.discount ?? 0) / 100))
     : ''
 
   const handleAddProductToCart = useCallback(() => {
@@ -105,7 +105,7 @@ const Product: NextPage = () => {
           <S.Title>{product.title}</S.Title>
           <S.PriceContainer>
             <S.Price>{formattedPrice}</S.Price>
-            <S.Discount>{product.discount}% OFF</S.Discount>
+            <S.Discount>{product.discount ?? 0}% OFF</S.Discount>
             <S.PreviousPrice>{formattedPreviousPrice}</S.PreviousPrice>
           </S.PriceContainer>
           <S.InfoWrapper>

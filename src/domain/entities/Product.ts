@@ -8,5 +8,5 @@ type TProduct = {
   model: string
   color: string
   category: string
-  discount: number
+  discount?: number
 }

@@ -25,7 +25,9 @@ export const CartItem: React.NamedExoticComponent<CartItemProps> = memo(
 
     const formattedPrice = useMemo(
       () =>
-        formatPrice(quantity * product.price * (1 - product.discount / 100)),
+        formatPrice(
+          quantity * product.price * (1 - (product.discount ?? 0) / 100),
+        ),
       [product.discount, product.price, quantity],
     )
 
@@ -65,7 +67,9 @@ export const CartItem: React.NamedExoticComponent<CartItemProps> = memo(
           </S.ActionsSection>
           <S.PriceSection>
             <S.FinalPrice>{formattedPrice}</S.FinalPrice>
-            <S.DiscountText>{product.discount}% de desconto</S.DiscountText>
+            <S.DiscountText>
+              {product.discount ?? 0}% de desconto
+            </S.DiscountText>
           </S.PriceSection>
         </S.RightSection>
       </S.CartItemContainer>

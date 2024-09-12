@@ -31,7 +31,7 @@ const Cart: NextPage = () => {
             acc +
             item.product.price *
               item.quantity *
-              (1 - item.product.discount / 100)
+              (1 - (item.product.discount ?? 0) / 100)
           )
         }
         return acc
@@ -40,7 +40,9 @@ const Cart: NextPage = () => {
         if (item.isSelected) {
           return (
             acc +
-            item.product.price * item.quantity * (item.product.discount / 100)
+            item.product.price *
+              item.quantity *
+              ((item.product.discount ?? 0) / 100)
           )
         }
         return acc
