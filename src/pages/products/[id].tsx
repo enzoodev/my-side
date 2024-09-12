@@ -41,17 +41,44 @@ const Product: NextPage = () => {
       return (
         <S.Content>
           <S.InfoContainer>
-            <S.Skeleton style={{ height: '20px', width: '20%' }} />
-            <S.Skeleton style={{ height: '100px', width: '80%' }} />
-            <S.Skeleton style={{ height: '70px', width: '40%' }} />
-            <S.Skeleton style={{ height: '30px', width: '30%' }} />
-            <S.Skeleton style={{ height: '30px', width: '30%' }} />
-            <S.Skeleton style={{ height: '30px', width: '30%' }} />
-            <S.Skeleton style={{ height: '200px', width: '80%' }} />
-            <S.Skeleton style={{ height: '60px', width: '40%' }} />
+            <S.Skeleton
+              style={{ height: '20px', width: '20%' }}
+              data-testid="skeleton"
+            />
+            <S.Skeleton
+              style={{ height: '100px', width: '80%' }}
+              data-testid="skeleton"
+            />
+            <S.Skeleton
+              style={{ height: '70px', width: '40%' }}
+              data-testid="skeleton"
+            />
+            <S.Skeleton
+              style={{ height: '30px', width: '30%' }}
+              data-testid="skeleton"
+            />
+            <S.Skeleton
+              style={{ height: '30px', width: '30%' }}
+              data-testid="skeleton"
+            />
+            <S.Skeleton
+              style={{ height: '30px', width: '30%' }}
+              data-testid="skeleton"
+            />
+            <S.Skeleton
+              style={{ height: '200px', width: '80%' }}
+              data-testid="skeleton"
+            />
+            <S.Skeleton
+              style={{ height: '60px', width: '40%' }}
+              data-testid="skeleton"
+            />
           </S.InfoContainer>
           <S.ImageContainer>
-            <S.Skeleton style={{ width: '100%', height: '550px' }} />
+            <S.Skeleton
+              style={{ width: '100%', height: '550px' }}
+              data-testid="skeleton"
+            />
           </S.ImageContainer>
         </S.Content>
       )

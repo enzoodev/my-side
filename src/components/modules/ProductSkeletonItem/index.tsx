@@ -4,7 +4,7 @@ import * as S from './styles'
 
 export const ProductSkeletonItem: React.FC = () => {
   return (
-    <S.ProductSkeletonCard>
+    <S.ProductSkeletonCard data-testid="skeleton">
       <S.SkeletonImage />
       <S.SkeletonInfo>
         <S.SkeletonTitle />
