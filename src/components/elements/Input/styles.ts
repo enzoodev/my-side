@@ -26,7 +26,7 @@ export const StyledInput = styled.input`
 
     &::selection {
       background-color: ${theme.colors.inputFocus};
-      color: #fff;
+      color: ${theme.colors.mainContrast};
     }
   `};
 `

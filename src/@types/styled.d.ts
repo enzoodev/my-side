@@ -8,6 +8,7 @@ interface BaseTheme {
     lg: string
     xl: string
     '2xl': string
+    '3xl': string
   }
   layout: {
     1: string
@@ -45,6 +46,8 @@ declare module 'styled-components' {
   export interface DefaultTheme extends BaseTheme {
     colors: {
       main: string
+      mainHover: string
+      mainContrast: string
       secondary: string
       text: string
       textGray: string
@@ -63,6 +66,8 @@ declare module 'styled-components' {
       scrollbarThumb: string
       scrollbarThumbHover: string
       scrollbarThumbActive: string
+      listEmptyBackground: string
+      listEmptyBorder: string
     }
   }
 }

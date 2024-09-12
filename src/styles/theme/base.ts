@@ -8,6 +8,7 @@ export const baseTheme: BaseTheme = {
     lg: '1.2rem',
     xl: '1.5rem',
     '2xl': '1.8rem',
+    '3xl': '2.3rem',
   },
   layout: {
     1: '0.25rem',

@@ -5,6 +5,8 @@ export const lightTheme: DefaultTheme = {
   ...baseTheme,
   colors: {
     main: '#E13C22',
+    mainHover: '#D13C22',
+    mainContrast: '#FFF',
     secondary: '#6C757D',
     text: '#212529',
     textGray: '#70757B',
@@ -23,5 +25,7 @@ export const lightTheme: DefaultTheme = {
     scrollbarThumb: '#C2C4C7',
     scrollbarThumbHover: '#999B9D',
     scrollbarThumbActive: '#70757B',
+    listEmptyBackground: '#DEE1E4',
+    listEmptyBorder: '#C0C2C6',
   },
 }

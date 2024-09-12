@@ -2,6 +2,7 @@ import { Fragment, useCallback, useMemo } from 'react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import { IconShoppingCartOff } from '@tabler/icons-react'
 
 import { useCartProducts } from '@/store/cart'
 
@@ -13,6 +14,7 @@ import { Routes } from '@/enums/Routes'
 import { Input } from '@/components/elements/Input'
 import { Header } from '@/components/elements/Header'
 import { Dropdown } from '@/components/elements/Dropdown'
+import { ListEmpty } from '@/components/elements/ListEmpty'
 import { Pagination } from '@/components/elements/Pagination'
 import { ProductItem } from '@/components/modules/ProductItem'
 import { ProductSkeletonItem } from '@/components/modules/ProductSkeletonItem'
@@ -60,22 +62,35 @@ const Home: NextPage = () => {
 
   const productItems = useMemo(() => {
     if (isFetchingProducts) {
-      return Array.from({ length: 30 }, () => (
-        <ProductSkeletonItem key={generateId()} />
-      ))
+      return (
+        <S.ProductGrid>
+          {Array.from({ length: 30 }, () => (
+            <ProductSkeletonItem key={generateId()} />
+          ))}
+        </S.ProductGrid>
+      )
     }
 
     if (products.length === 0) {
-      return <p>Nenhum produto encontrado.</p>
+      return (
+        <ListEmpty
+          icon={<IconShoppingCartOff size={28} stroke={1.5} />}
+          message="Nenhum produto encontrado."
+        />
+      )
     }
 
-    return products.map((product) => (
-      <ProductItem
-        key={product.id}
-        item={product}
-        onAddProductToCart={() => handleAddProductToCart(product)}
-      />
-    ))
+    return (
+      <S.ProductGrid>
+        {products.map((product) => (
+          <ProductItem
+            key={product.id}
+            item={product}
+            onAddProductToCart={() => handleAddProductToCart(product)}
+          />
+        ))}
+      </S.ProductGrid>
+    )
   }, [handleAddProductToCart, isFetchingProducts, products])
 
   return (
@@ -104,9 +119,9 @@ const Home: NextPage = () => {
               />
             </S.FilterWrapper>
           </S.TitleWrapper>
-          <S.ProductGrid>{productItems}</S.ProductGrid>
+          {productItems}
           <Pagination
-            totalPages={3} // get this value from the API
+            totalPages={3} // ask the backend team to give me this endpoint value
             currentPage={page}
             onSetPage={handleSetPage}
             onGoToPreviousPage={handleGoToPreviousPage}

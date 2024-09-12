@@ -7,6 +7,7 @@ import { getProductById } from '@/query/products/getProductById'
 
 export const useGetProduct = (productId: number) => {
   const { data: product, isFetching: isFetchingProduct } = useQuery({
+    enabled: !!productId,
     queryKey: [QueryKey.GET_PRODUCT_BY_ID, { productId }],
     queryFn: async () => {
       try {

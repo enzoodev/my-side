@@ -24,7 +24,7 @@ export const PageNumberButton = styled.button<{ active: boolean }>`
     height: ${theme.layout[12]};
     width: ${theme.layout[12]};
     background-color: ${active ? theme.colors.main : theme.colors.button};
-    color: ${active ? '#fff' : theme.colors.text};
+    color: ${active ? theme.colors.mainContrast : theme.colors.text};
     border: 1px solid ${active ? theme.colors.main : theme.colors.inputBorder};
     cursor: pointer;
     transition: all 0.3s ease-in-out;

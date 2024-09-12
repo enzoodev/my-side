@@ -68,7 +68,7 @@ export const DropdownItem = styled.li`
 
     &:hover {
       background-color: ${theme.colors.inputFocus};
-      color: #fff;
+      color: ${theme.colors.mainContrast};
     }
   `};
 `
