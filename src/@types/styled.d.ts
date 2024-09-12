@@ -53,8 +53,10 @@ declare module 'styled-components' {
       textGray: string
       background: string
       card: string
+      cardDark: string
       header: string
       border: string
+      borderInner: string
       button: string
       buttonHover: string
       inputBackground: string
