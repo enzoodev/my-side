@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 type CartState = {
-  data: Record<string, CartProduct>
+  data: Record<string, TCartProduct>
 }
 
 const initialState: CartState = {
@@ -17,9 +17,11 @@ export const cartSlice = createSlice({
 
       if (state.data[productId]) {
         state.data[productId].quantity += 1
+        state.data[productId].isSelected = true
       } else {
         state.data[productId] = {
           quantity: 1,
+          isSelected: true,
           product: action.payload,
         }
       }
@@ -47,6 +49,13 @@ export const cartSlice = createSlice({
     removeProductFromCart: (state, action: PayloadAction<number>) => {
       const productId = action.payload
       delete state.data[productId]
+    },
+    toggleSelectProduct: (state, action: PayloadAction<number>) => {
+      const productId = action.payload
+
+      if (state.data[productId]) {
+        state.data[productId].isSelected = !state.data[productId].isSelected
+      }
     },
   },
 })

@@ -39,11 +39,19 @@ export const useCartProducts = () => {
     [dispatch],
   )
 
+  const toggleSelectProduct = useCallback(
+    (productId: number) => {
+      dispatch(cartActions.toggleSelectProduct(productId))
+    },
+    [dispatch],
+  )
+
   return {
     cart,
     addProductToCart,
     removeProductFromCart,
     increaseProductQuantity,
     decreaseProductQuantity,
+    toggleSelectProduct,
   }
 }
